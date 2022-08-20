@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.method.im.mapper.FriendMapperExtend">
+
+    <select id="queryFriendList" resultType="com.method.im.pojo.vo.FriendListVo"
+            parameterType="String">
+
+        select
+            usr.id as sendUserId,
+            usr.username as sendUsername,
+            usr.face_image as sendFaceImage,
+            usr.face_image_big as sendFaceImageBig,
+            usr.nickname as sendNickname
+        from
+            my_friends mf
+        left join
+            users usr
+        on
+            mf.my_friend_user_id = usr.id
+        where
+            mf.my_user_id = #{userId};
+
+    </select>
+
+</mapper>
